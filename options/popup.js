@@ -9,19 +9,13 @@ function onError(e) {
 document.addEventListener('DOMContentLoaded', function() {
     let add_cit = document.getElementById('add_cit');
     add_cit.addEventListener('click', add_citation());
-});
 
-document.addEventListener('DOMContentLoaded', function() {
     let copy_bib = document.getElementById('copy_bib');
     copy_bib.addEventListener('click', paste_bibliography);
-});
 
-document.addEventListener('DOMContentLoaded', function() {
     let copy_cit = document.getElementById('copy_cit');
     copy_cit.addEventListener('click', paste_bibliography);
-});
 
-document.addEventListener('DOMContentLoaded', function() {
     let clear_bib = document.getElementById('clear_bib');
     clear_bib.addEventListener('click', paste_bibliography);
 });
