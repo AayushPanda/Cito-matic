@@ -10,14 +10,11 @@
   },
 
   "browser_action": {
-    "default_icon": "graphics/icon.png"
+    "default_icon": "graphics/icon.png",
+    "default_popup": "options/options.html"
   },
 
   "homepage_url": "https://github.com/AayushPanda/citomatic",
-
-  "options_ui": {
-    "page": "options/options.html"
-  },
 
   "permissions": [
     "clipboardWrite",
