@@ -11,7 +11,7 @@
 
   "browser_action": {
     "default_icon": "graphics/icon.png",
-    "default_popup": "options/options.html"
+    "default_popup": "options/menu.html"
   },
 
   "homepage_url": "https://github.com/AayushPanda/citomatic",
