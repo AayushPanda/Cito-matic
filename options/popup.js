@@ -8,16 +8,14 @@ function onError(e) {
 
 //document.addEventListener('DOMContentLoaded', function() {
 let add_cit = document.getElementById('add_cit');
-add_cit.addEventListener('click', add_citation());
-
 let copy_bib = document.getElementById('copy_bib');
-copy_bib.addEventListener('click', paste_bibliography);
-
 let copy_cit = document.getElementById('copy_cit');
-copy_cit.addEventListener('click', copy_cit);
-
 let clear_bib = document.getElementById('clear_bib');
-clear_bib.addEventListener('click', clear_bib);
+
+add_cit.addEventListener('click', add_citation());
+copy_bib.addEventListener('click', paste_bibliography);
+copy_cit.addEventListener('click', paste_citation());
+clear_bib.addEventListener('click', paste_bibliography());
 //});
 
 var bibliography = "";
