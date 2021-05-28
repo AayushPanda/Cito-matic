@@ -1,7 +1,5 @@
-/*
-Generic error logger.
+//Generic error logger.
 
-*/
 function onError(e) {
     console.error(e);
 }
@@ -40,7 +38,7 @@ function paste_bibliography() {    // Copy bibliography to user clipboard
 }
 
 function paste_citation() {    // Copy latest citation to user clipboard
-    navigator.clipboard.writeText(citations[-1]).then();
+    navigator.clipboard.writeText(citations[citations.length-1]).then();
 }
 
 function copy_link_from_clipboard() {   // Add citation to bibliography using user clipboard data
