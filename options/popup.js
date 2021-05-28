@@ -6,6 +6,11 @@ function onError(e) {
     console.error(e);
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    let add_cit = document.getElementById('add_cit');
+    add_cit.addEventListener('click', add_citation());
+});
+
 var bibliography = "";
 var citations = [];
 
