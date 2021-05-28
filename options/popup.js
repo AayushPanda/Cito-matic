@@ -17,7 +17,7 @@ clear_bib.addEventListener('click', paste_bibliography());
 //});
 
 let bibliography = "";
-let citations = [];
+var citations = ["no citations"];
 
 function add_citation() {   // Cite current url (where extension was activated)
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
