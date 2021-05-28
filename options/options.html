@@ -18,9 +18,16 @@
         </section>
 
         <section>
-            <p><input id="add_cite" type="button" value="Add to Citation" onclick="add_citation();"/></p>
-            <p><input id="clear_bib" type="button" value="Clear Bibliography" onclick="clear_bibliography();"/></p>
-            <p><input id="paste_bib" type="button" value="Copy Bibliography" onclick="paste_bibliography();"/></p>
+            <p><button onclick="add_citation()" class="button button2">Add to Citation</button></p>
+            <p><button onclick="paste_bibliography()" class="button button1">Copy Bibliography</button></p>
+            <p><button onclick="paste_citation()" class="button button1">Copy Citation</button></p>
+            <p><button onclick="clear_bibliography()" class="button button3">Clear Bibliography</button></p>
+        </section>
+
+        <section>
+            <textarea id="url_disp" name="url_display" rows="4" cols="50">
+                Current url will appear here
+            </textarea>
         </section>
     </body>
 </html>
