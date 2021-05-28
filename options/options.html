@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="options.css"/>
+    </head>
+
+    <body>
+        <section>Citation style:
+            <label>
+                <select>
+                <option value="day">MLA</option>
+                <option value="week">APA</option>
+                <option value="forever">Chicago</option>
+                </select>
+            </label>
+        </section>
+
+        <section>
+            <p><input id="add_cite" type="button" value="Add to Citation" onclick="add_citation();"/></p>
+            <p><input id="clear_bib" type="button" value="Clear Bibliography" onclick="clear_bibliography();"/></p>
+            <p><input id="paste_bib" type="button" value="Copy Bibliography" onclick="paste_bibliography();"/></p>
+        </section>
+    </body>
+</html>
