@@ -6,7 +6,7 @@ function onError(e) {
     console.error(e);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+//document.addEventListener('DOMContentLoaded', function() {
     let add_cit = document.getElementById('add_cit');
     add_cit.addEventListener('click', add_citation());
 
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let clear_bib = document.getElementById('clear_bib');
     clear_bib.addEventListener('click', paste_bibliography);
-});
+//});
 
 var bibliography = "";
 var citations = [];
