@@ -2,11 +2,11 @@
   "manifest_version": 2,
   "name": "Cito-matic",
   "version": "0.1",
-  "author": "Aayush Panda",
+  "author": "Aayush Panda, Carl Zhang",
   "description": "An extension to help create bibliographies when researching online",
 
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["client.js"]
   },
 
   "browser_action": {
