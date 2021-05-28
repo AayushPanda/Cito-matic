@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "Cito-matic",
+  "version": "0.1",
+  "author": "Aayush Panda",
+  "description": "An extension to help create bibliographies when researching online",
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "browser_action": {
+    "default_icon": "graphics/icon.png"
+  },
+
+  "homepage_url": "https://github.com/AayushPanda/citomatic",
+
+  "options_ui": {
+    "page": "options/options.html"
+  },
+
+  "permissions": [
+    "clipboardWrite",
+    "clipboardRead",
+    "tabs"
+  ]
+}
