@@ -16,7 +16,7 @@ copy_cit.addEventListener('click', paste_citation());
 clear_bib.addEventListener('click', paste_bibliography());
 //});
 
-let bibliography = "";
+var bibliography = "References";
 var citations = ["no citations"];
 
 function add_citation() {   // Cite current url (where extension was activated)
