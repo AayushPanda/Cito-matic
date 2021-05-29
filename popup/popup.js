@@ -46,11 +46,6 @@ function addCitation(url) {
 
             } else {
                 bib = result.Bibliography;
-
-                bib.forEach(function (value) {
-                    bibliography += value;
-                    bibliography += " \n";
-                });
             }
             if(!bib.includes(url)){
                 bib.push(url);
