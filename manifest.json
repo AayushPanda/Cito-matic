@@ -6,7 +6,8 @@
   "description": "An extension to help create bibliographies when researching online",
 
   "background": {
-    "scripts": []
+    "scripts": ["background.js"],
+    "persistent": false
   },
 
   "browser_action": {
