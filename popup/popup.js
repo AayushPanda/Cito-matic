@@ -24,31 +24,13 @@ clear_bib.addEventListener('click', function () {
 });
 
 // Global variables
-var syncData = true;    // TODO Add switch in HTML to change this variable's value
-var citations = ["No Citations"];
-var bibliography = "References \n";
-
-/*
-// Getting saved citation data
-if(getData("Bibliography") === undefined){
-    bibliography = "References \n";
-    setData("Bibliography", bibliography);
-} else {
-    bibliography = getData("Bibliography");
-}
-
-if(getData("Citations") === undefined){
-    citations = ["No Citations"];
-    setData("Citations",citations);
-} else {
-    citations = getData("Citations");
-}
-*/
+let syncData = true;    // TODO Add switch in HTML to change this variable's value
 
 // Functions to interact with synced data
 function getData(key="") {
     if(syncData){
         chrome.storage.sync.get([key], function(result) {
+            console.log(result.values);
             return result.values;
         });
     } else {
@@ -70,6 +52,20 @@ function setData(target_key="", value) {
     }
 }
 
+// Getting saved citation data
+if(getData("Bibliography") === undefined){
+    bibliography = "References \n";
+    setData("Bibliography", bibliography);
+} else {
+    bibliography = getData("Bibliography");
+}
+
+if(getData("Citations") === undefined){
+    citations = ["No Citations"];
+    setData("Citations", citations);
+} else {
+    citations = getData("Citations");
+}
 
 // User-interacted functions
 function add_citation() {   // Cite current url (where extension was activated)
@@ -85,8 +81,8 @@ function add_citation() {   // Cite current url (where extension was activated)
 }
 
 function clear_bibliography() {    // Clear all data in bibliography
-    bibliography = "References";
-    citations = ["\n"];
+    bibliography = "References \n";
+    citations = ["No Citations"];
     setData("Bibliography", bibliography);
     setData("Citations", citations);
 }
