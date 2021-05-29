@@ -25,7 +25,7 @@ clear_bib.addEventListener('click', function (){
 //});
 
 var bibliography = "References";
-var citations = ["no citations"];
+var citations = [];
 
 function add_citation() {   // Cite current url (where extension was activated)
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
