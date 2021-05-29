@@ -24,7 +24,7 @@ clear_bib.addEventListener('click', function () {
 });
 
 // Global variables
-var syncData = true;    // TODO Add switch in HTML to change this variable's value
+var syncData = false;    // TODO Add switch in HTML to change this variable's value
 
 // Getting saved citation data
 if(getData("Bibliography") === undefined){
@@ -45,11 +45,11 @@ if(getData("Citations") === undefined){
 function getData(key="") {
     if(syncData){
         chrome.storage.sync.get([key], function(result) {
-            return result.result;
+            return result;
         });
     } else {
         chrome.storage.local.get([key], function(result) {
-            return result.result;
+            return result;
         });
     }
 }
