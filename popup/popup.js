@@ -20,13 +20,13 @@ clear_bib.addEventListener('click', () => {
 });
 
 chrome.runtime.onInstalled.addListener(function() {
-    chrome.storage.local.set({"Bibliography": []}, () => {
+    chrome.storage.local.set({"Bibliography": ["A"]}, () => {
         console.log("Bibliography created");
     });
 });
 
 chrome.storage.local.get(["Bibliography"], (result) => {
-    document.getElementById('url_disp').value = result.Bibliography;
+    document.getElementById('url_disp').value = formatBib(result.Bibliography);
 });
 
 function addCitation(url) {
@@ -63,6 +63,6 @@ function clearBib() {
 
 function formatBib(b) {
     let bib = "";
-    b.forEach((value) => {bib += value + ".\n";});
+    if(b) { b.forEach((value) => {bib += value + ".\n";}); }
     return bib;
 }
