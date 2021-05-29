@@ -45,11 +45,11 @@ if(getData("Citations") === undefined){
 function getData(key="") {
     if(syncData){
         chrome.storage.sync.get([key], function(result) {
-            return result.key;
+            return result.result;
         });
     } else {
         chrome.storage.local.get([key], function(result) {
-            return result.key;
+            return result.result;
         });
     }
 }
