@@ -28,14 +28,14 @@ var syncData = true;    // TODO Add switch in HTML to change this variable's val
 
 // Getting saved citation data
 if(getData("Bibliography") === undefined){
-    bibliography = "References";
+    bibliography = "References\n";
     setData("Bibliography", bibliography);
 } else {
     bibliography = getData("Bibliography");
 }
 
 if(getData("Citations") === undefined){
-    citations = ["\n"];
+    citations = ["No Citations"];
     setData("Citations",citations);
 } else {
     citations = getData("Citations");
