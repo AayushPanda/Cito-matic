@@ -25,10 +25,7 @@ clear_bib.addEventListener('click', function () {
 
 // Global variables
 var syncData = true;    // TODO Add switch in HTML to change this variable's value
-var citations = ["No Citations"];
-var bibliography = "References \n";
 
-/*
 // Getting saved citation data
 if(getData("Bibliography") === undefined){
     bibliography = "References \n";
@@ -43,7 +40,7 @@ if(getData("Citations") === undefined){
 } else {
     citations = getData("Citations");
 }
-*/
+
 
 // Functions to interact with synced data
 function getData(key="") {
@@ -74,7 +71,7 @@ function setData(target_key="", value) {
 // User-interacted functions
 function add_citation() {   // Cite current url (where extension was activated)
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-        let url = tabs[0].url;
+        let url = tabs[tabs.length - 1].url;
         let citation = create_citation(url);
         bibliography += citation;
         bibliography += "\n";
