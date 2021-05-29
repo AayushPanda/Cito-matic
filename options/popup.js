@@ -46,7 +46,7 @@ if(getData("Citations") === undefined){
 function getData(key="") {
     if(syncData){
         chrome.storage.sync.get([key], function(result) {
-            console.log(result.values)
+            console.log(result.values);
             return result.values;
         });
     } else {
