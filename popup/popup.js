@@ -35,7 +35,7 @@ function addCitation(url) {
         chrome.storage.local.get(["Bibliography"], (result) => {
             let bib;
             if(result.Bibliography === undefined){
-                bib = []
+                bib = [];
             } else {
                 bib = result.Bibliography;
             }
@@ -63,6 +63,6 @@ function clearBib() {
 
 function formatBib(b) {
     let bib = "";
-    bib.forEach((value) => {bibliography += value + ".\n";});
+    b.forEach((value) => {bib += value + ".\n";});
     return bib;
 }
