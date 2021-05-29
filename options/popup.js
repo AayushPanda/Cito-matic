@@ -25,8 +25,8 @@ clear_bib.addEventListener('click', function () {
 
 // Global variables
 let syncData = true;    // TODO Add switch in HTML to change this variable's value
-let bibliography = "";
-let citations = [];
+let bibliography;
+let citations;
 
 // Getting saved citation data
 if(getData("Bibliography") === null){
