@@ -26,19 +26,24 @@ clear_bib.addEventListener('click', function () {
 // Global variables
 let syncData = true;    // TODO Add switch in HTML to change this variable's value
 
+data = {
+    "Bibliography":"",
+    "Citations":[]
+};
+
 // Getting saved citation data
 if(getData("Bibliography") === undefined){
-    bibliography = "References \n";
-    setData("Bibliography", bibliography);
+    data["Bibliography"] = "References \n";
+    setData(data["Bibliography"]);
 } else {
-    bibliography = getData("Bibliography");
+    data["Bibliography"] = getData("Bibliography");
 }
 
 if(getData("Citations") === undefined){
-    citations = ["No Citations"];
-    setData("Citations", citations);
+    data["Citations"] = ["No Citations"];
+    setData(data["Citations"]);
 } else {
-    citations = getData("Citations");
+    data["Citations"] = getData("Citations");
 }
 
 
@@ -56,11 +61,15 @@ function getData(key="") {
     }
 }
 
-function setData(target_key="", value) {
+function setData(data_ob) {
     if(syncData){
-        chrome.storage.sync.set({target_key: value});
+        chrome.storage.sync.set(data_ob, function() {
+            //console.log('Value ' + target_key + ' is set to ' + value);
+        });
     } else {
-        chrome.storage.local.set({target_key: value});
+        chrome.storage.local.set(data_ob, function() {
+            //console.log('Value ' + target_key + ' is set to ' + value);
+        });
     }
 }
 
@@ -70,27 +79,27 @@ function add_citation() {   // Cite current url (where extension was activated)
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         let url = tabs[0].url;
         let citation = create_citation(url);
-        bibliography += citation;
-        bibliography += "\n";
-        citations.push(citation);
-        setData("Bibliography", bibliography);
-        setData("Citations", citations);
+        data["Bibliography"] += citation;
+        data["Bibliography"] += "\n";
+        data["Citations"].push(citation);
+        setData(data["Bibliography"]);
+        setData(data["Citations"]);
     });
 }
 
 function clear_bibliography() {    // Clear all data in bibliography
-    bibliography = "References";
-    citations = ["\n"];
-    setData("Bibliography", bibliography);
-    setData("Citations", citations);
+    data["Bibliography"] = "References";
+    data["Citations"] = ["\n"];
+    setData(data["Bibliography"]);
+    setData(data["Citations"]);
 }
 
 function paste_bibliography() {    // Copy bibliography to user clipboard
-    navigator.clipboard.writeText(bibliography).then();
+    navigator.clipboard.writeText(data["Bibliography"]).then();
 }
 
 function paste_citation() {    // Copy latest citation to user clipboard
-    navigator.clipboard.writeText(citations[citations.length - 1]).then();
+    navigator.clipboard.writeText(data["Citations"][data["Citations"].length - 1]).then();
 }
 
 function copy_link_from_clipboard() {   // Add citation to bibliography using user clipboard data
