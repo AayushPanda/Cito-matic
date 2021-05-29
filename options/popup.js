@@ -29,14 +29,14 @@ var bibliography = "";
 var citations = [];
 
 // Getting saved citation data
-if(getData("Bibliography").length === 0){
+if(getData("Bibliography") === void){
     setData("Bibliography", "References");
     bibliography = getData("Bibliography");
 } else {
     bibliography = getData("Bibliography");
 }
 
-if(getData("Citations").length === 0){
+if(getData("Citations") === void){
     setData("Citations",[]);
     citations = getData("Citations");
 } else {
