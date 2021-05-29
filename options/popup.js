@@ -45,12 +45,12 @@ if(getData("Citations") === undefined){
 // Functions to interact with synced data
 function getData(key="") {
     if(syncData){
-        chrome.storage.sync.get([key], function(result) {
+        chrome.storage.sync.get([key], (result) => {
             console.log(result.values);
             return result.values;
         });
     } else {
-        chrome.storage.local.get([key], function(result) {
+        chrome.storage.local.get([key], (result) => {
             return result.values;
         });
     }
@@ -58,11 +58,11 @@ function getData(key="") {
 
 function setData(target_key="", value) {
     if(syncData){
-        chrome.storage.sync.set({target_key: value}, function() {
+        chrome.storage.sync.set({target_key: value}, () => {
             console.log('Value ' + target_key + ' is set to ' + value);
         });
     } else {
-        chrome.storage.local.set({target_key: value}, function() {
+        chrome.storage.local.set({target_key: value}, () => {
             console.log('Value ' + target_key + ' is set to ' + value);
         });
     }
