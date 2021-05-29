@@ -1,5 +1,4 @@
 //Generic error logger.
-
 function onError(e) {
     console.error(e);
 }
@@ -12,27 +11,37 @@ let clear_bib = document.getElementById('clear_bib');
 
 // Adding listeners to UI elements
 add_cit.addEventListener('click', function () {
-    add_citation()
+    add_citation();
 });
 copy_bib.addEventListener('click', function () {
-    paste_bibliography
+    paste_bibliography();
 });
 copy_cit.addEventListener('click', function () {
-    paste_citation()
+    paste_citation();
 });
 clear_bib.addEventListener('click', function () {
-    paste_bibliography()
+    clear_bibliography();
 });
 
 // Global variables
 var syncData = true;    // TODO Add switch in HTML to change this variable's value
+var bibliography;
+var citations;
 
-if(getData("Bibliography")!=="References"){
-
+// Getting saved citation data
+if(getData("Bibliography").length === 0){
+    setData("Bibliography", "References");
+    bibliography = getData("Bibliography");
+} else {
+    bibliography = getData("Bibliography");
 }
 
-var bibliography = "References";
-var citations = [];
+if(getData("Citations").length === 0){
+    setData("Citations",[]);
+    citations = getData("Citations");
+} else {
+    citations = getData("Citations");
+}
 
 // Functions to interact with synced data
 function getData(key="") {
@@ -67,11 +76,16 @@ function add_citation() {   // Cite current url (where extension was activated)
         bibliography += "\n";
         bibliography += citation;
         citations.push(citation);
+        setData("Bibliography", bibliography);
+        setData("Citations", citations);
     });
 }
 
 function clear_bibliography() {    // Clear all data in bibliography
     bibliography = "";
+    citations = [];
+    setData("Bibliography", bibliography);
+    setData("Citations", citations);
 }
 
 function paste_bibliography() {    // Copy bibliography to user clipboard
