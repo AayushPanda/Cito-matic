@@ -7,7 +7,6 @@ function onError(e) {
 let add_cit = document.getElementById('add_cit');
 let copy_bib = document.getElementById('copy_bib');
 let clear_bib = document.getElementById('clear_bib');
-let bibliography = "";
 
 // Adding listeners to UI elements
 add_cit.addEventListener('click', () => {
@@ -34,38 +33,36 @@ function addCitation(url) {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
         let url = tabs[0].url;
         chrome.storage.local.get(["Bibliography"], (result) => {
+            let bib;
             if(result.Bibliography === undefined){
-                bib = ["References"];
-
-                bibliography = "References \n";
+                bib = []
             } else {
                 bib = result.Bibliography;
-
-                bibliography = "";
-                bib.forEach(function (value) {
-                    bibliography += value;
-                    bibliography += " \n";
-                });
             }
             if(!bib.includes(url)){
                 bib.push(url);
-                bibliography += (url + " \n");
             }
             chrome.storage.local.set({"Bibliography": bib}, () => {});
-            document.getElementById('url_disp').value = bibliography;
+            document.getElementById('url_disp').value = formatBib(bib);
         });
     });
 }
 
 function copyBib() {
-    navigator.clipboard.writeText(bibliography).then();
+    chrome.storage.local.get(["Bibliography"], (result) => {
+        navigator.clipboard.writeText(formatBib(result.Bibliography)).then();
+    });
 }
 
 function clearBib() {
     chrome.storage.local.set({"Bibliography": []}, () => {
         console.log("Bibliography cleared");
         document.getElementById('url_disp').value = "";
-        bib = ["References"];
-        bibliography = "References \n"
     });
+}
+
+function formatBib(b) {
+    let bib = "";
+    bib.forEach((value) => {bibliography += value + ".\n";});
+    return bib;
 }
