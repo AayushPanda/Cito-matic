@@ -25,8 +25,8 @@ clear_bib.addEventListener('click', function () {
 
 // Global variables
 var syncData = true;    // TODO Add switch in HTML to change this variable's value
-var citations;
-var bibliography;
+var citations = [];
+var bibliography = "";
 
 /*
 // Getting saved citation data
