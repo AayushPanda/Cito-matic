@@ -43,7 +43,7 @@ if(getData("Citations") === undefined){
 } else {
     citations = getData("Citations");
 }
-
+*/
 
 // Functions to interact with synced data
 function getData(key="") {
@@ -69,7 +69,7 @@ function setData(target_key="", value) {
         });
     }
 }
-*/
+
 
 // User-interacted functions
 function add_citation() {   // Cite current url (where extension was activated)
