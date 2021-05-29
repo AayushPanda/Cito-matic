@@ -1,0 +1,92 @@
+body {
+    font-family: "Open Sans Light" sans-serif;
+    font-size: 0.9em;
+    font-weight: 300;
+    width: 384px;
+    height: 460px;
+    border: #D64045 solid 10px;
+    margin: 0px;
+    background-color: #F2F5EA;
+    padding: 24px;
+    padding-top: 30px;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+textarea {
+    resize: none;
+    width: 316px;
+    height: 236px;
+}
+
+.text {
+    margin-top: 10px;
+}
+
+.btn {
+    width: 33px;
+    height: 33px;
+    padding: 0px;
+}
+
+select {
+    height: 33px;
+}
+
+.btn {
+    background-color: #4C5454;
+    color: #F2F5EA;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 66px;
+    height: 33px;
+  }
+  
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #4C5454;
+    -webkit-transition: .1s;
+    transition: .1s;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 33px;
+    width: 33px;
+    left: 0px;
+    bottom: 0px;
+    background-color: #C4C4C4;
+    -webkit-transition: .1s;
+    transition: .1s;
+}
+  
+input:checked + .slider {
+    background-color: #D64045;
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px #D64045;
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(33px);
+    -ms-transform: translateX(33px);
+    transform: translateX(33px);
+}

@@ -3,32 +3,45 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="options.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="popup.css">
     </head>
 
     <body>
-        <section>Citation style:
-            <label>
-                <select>
-                <option value="MLA">MLA</option>
-                <option value="APA">APA</option>
-                <option value="Chicago">Chicago</option>
-                </select>
-            </label>
-        </section>
+        <div class="container"></div>
+            <img src="../graphics/logo.png" alt="Citomatic" height="77px">
 
-        <section>
-            <p><button id="add_cit" class="button button2">Add to Bibliography</button></p>
-            <p><button id="copy_bib" class="button button1">Copy Bibliography</button></p>
-            <p><button id="copy_cit" class="button button1">Copy Last Citation</button></p>
-            <p><button id="clear_bib" class="button button3">Clear Bibliography</button></p>
-        </section>
+            <div class="row buttons">
+                <div class="col-3">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="col-3">
+                    <label>
+                        <select>
+                            <option value="MLA">MLA</option>
+                            <option value="APA">APA</option>
+                            <option value="Chicago">Chicago</option>
+                        </select>
+                    </label>
+                </div>
 
-        <section>
-            <textarea id="url_disp" name="url_display" rows="4" cols="50">
-                Current url will appear here
-            </textarea>
-        </section>
+                <div class="col-2"><button type="button" id="add_cit" class="btn button button2"><i class="bi bi-plus-circle"></i></button></div>
+                <div class="col-2"><button type="button" id="copy_bib" class="btn button button1"><i class="bi bi-clipboard-check"></i></button></div>
+                <div class="col-1"><button type="button" id="clear_bib" class="btn button button3"><i class="bi bi-trash"></i></button></div>
+            </div>
+
+            <div class="row text">
+                <div class="col-12">
+                    <textarea id="url_disp" name="url_display" rows="1" cols="1"></textarea>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
 
