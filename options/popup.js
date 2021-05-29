@@ -44,12 +44,12 @@ if(getData("Citations") === undefined){
 // Functions to interact with synced data
 function getData(key="") {
     if(syncData){
-        chrome.storage.sync.get(key, function(result) {
-            return result;
+        chrome.storage.sync.get([key], function(result) {
+            return result.values;
         });
     } else {
-        chrome.storage.local.get(key, function(result) {
-            return result;
+        chrome.storage.local.get([key], function(result) {
+            return result.values;
         });
     }
 }
