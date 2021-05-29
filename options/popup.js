@@ -83,8 +83,8 @@ function add_citation() {   // Cite current url (where extension was activated)
 }
 
 function clear_bibliography() {    // Clear all data in bibliography
-    bibliography = "References";
-    citations = ["\n"];
+    bibliography = "References \n";
+    citations = ["No Citations"];
     setData("Bibliography", bibliography);
     setData("Citations", citations);
 }
