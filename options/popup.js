@@ -31,15 +31,27 @@ var citations = [];
 
 // Functions to interact with synced data
 function getData(key="") {
-    chrome.storage.sync.get([key], function(result) {
-        return result.key;
-    });
+    if(syncData){
+        chrome.storage.sync.get([key], function(result) {
+            return result.key;
+        });
+    } else {
+        chrome.storage.local.get([key], function(result) {
+            return result.key;
+        });
+    }
 }
 
 function setData(target_key="", value) {
-    chrome.storage.sync.set({target_key: value}, function() {
-        console.log('Value ' + target_key + ' is set to ' + value);
-    });
+    if(syncData){
+        chrome.storage.sync.set({target_key: value}, function() {
+            console.log('Value ' + target_key + ' is set to ' + value);
+        });
+    } else {
+        chrome.storage.local.set({target_key: value}, function() {
+            console.log('Value ' + target_key + ' is set to ' + value);
+        });
+    }
 }
 
 // User-interacted functions
