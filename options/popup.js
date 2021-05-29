@@ -25,20 +25,22 @@ clear_bib.addEventListener('click', function () {
 
 // Global variables
 var syncData = true;    // TODO Add switch in HTML to change this variable's value
+var citations;
+var bibliography;
 
 // Getting saved citation data
 if(getData("Bibliography") === null){
-    var bibliography = "References";
+    bibliography = "References";
     setData("Bibliography", bibliography);
 } else {
-    var bibliography = getData("Bibliography");
+    bibliography = getData("Bibliography");
 }
 
 if(getData("Citations") === null){
-    var citations = [];
+    citations = ["\n"];
     setData("Citations",citations);
 } else {
-    var citations = getData("Citations");
+    citations = getData("Citations");
 }
 
 // Functions to interact with synced data
@@ -71,8 +73,8 @@ function add_citation() {   // Cite current url (where extension was activated)
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         let url = tabs[0].url;
         let citation = create_citation(url);
-        bibliography += "\n";
         bibliography += citation;
+        bibliography += "\n";
         citations.push(citation);
         setData("Bibliography", bibliography);
         setData("Citations", citations);
