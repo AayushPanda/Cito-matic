@@ -26,6 +26,22 @@ clear_bib.addEventListener('click', function () {
 // Global variables
 let syncData = true;    // TODO Add switch in HTML to change this variable's value
 
+// Getting saved citation data
+if(getData("Bibliography") === undefined){
+    bibliography = "References \n";
+    setData("Bibliography", bibliography);
+} else {
+    bibliography = getData("Bibliography");
+}
+
+if(getData("Citations") === undefined){
+    citations = ["No Citations"];
+    setData("Citations", citations);
+} else {
+    citations = getData("Citations");
+}
+
+
 // Functions to interact with synced data
 function getData(key="") {
     if(syncData){
@@ -50,21 +66,6 @@ function setData(target_key="", value) {
             console.log('Value ' + target_key + ' is set to ' + value);
         });
     }
-}
-
-// Getting saved citation data
-if(getData("Bibliography") === undefined){
-    bibliography = "References \n";
-    setData("Bibliography", bibliography);
-} else {
-    bibliography = getData("Bibliography");
-}
-
-if(getData("Citations") === undefined){
-    citations = ["No Citations"];
-    setData("Citations", citations);
-} else {
-    citations = getData("Citations");
 }
 
 // User-interacted functions
