@@ -10,10 +10,18 @@ let copy_bib = document.getElementById('copy_bib');
 let copy_cit = document.getElementById('copy_cit');
 let clear_bib = document.getElementById('clear_bib');
 
-add_cit.addEventListener('click', add_citation());
-copy_bib.addEventListener('click', paste_bibliography);
-copy_cit.addEventListener('click', paste_citation());
-clear_bib.addEventListener('click', paste_bibliography());
+add_cit.addEventListener('click', function (){
+    add_citation()
+});
+copy_bib.addEventListener('click', function (){
+    paste_bibliography
+});
+copy_cit.addEventListener('click', function (){
+    paste_citation()
+});
+clear_bib.addEventListener('click', function (){
+    paste_bibliography()
+});
 //});
 
 var bibliography = "References";
