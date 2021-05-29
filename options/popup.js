@@ -29,14 +29,14 @@ var citations;
 var bibliography;
 
 // Getting saved citation data
-if(getData("Bibliography") === null){
+if(getData("Bibliography") === undefined){
     bibliography = "References";
     setData("Bibliography", bibliography);
 } else {
     bibliography = getData("Bibliography");
 }
 
-if(getData("Citations") === null){
+if(getData("Citations") === undefined){
     citations = ["\n"];
     setData("Citations",citations);
 } else {
@@ -82,8 +82,8 @@ function add_citation() {   // Cite current url (where extension was activated)
 }
 
 function clear_bibliography() {    // Clear all data in bibliography
-    bibliography = "";
-    citations = [];
+    bibliography = "References";
+    citations = ["\n"];
     setData("Bibliography", bibliography);
     setData("Citations", citations);
 }
