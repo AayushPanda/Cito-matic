@@ -28,6 +28,7 @@ var syncData = true;    // TODO Add switch in HTML to change this variable's val
 var citations;
 var bibliography;
 
+/*
 // Getting saved citation data
 if(getData("Bibliography") === undefined){
     bibliography = "References \n";
@@ -42,6 +43,7 @@ if(getData("Citations") === undefined){
 } else {
     citations = getData("Citations");
 }
+ */
 
 // Functions to interact with synced data
 function getData(key="") {
