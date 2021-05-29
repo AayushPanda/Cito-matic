@@ -30,15 +30,15 @@ var citations = [];
 
 // Getting saved citation data
 if(getData("Bibliography") === null){
-    setData("Bibliography", "References");
-    bibliography = getData("Bibliography");
+    bibliography = "References";
+    setData("Bibliography", bibliography);
 } else {
     bibliography = getData("Bibliography");
 }
 
 if(getData("Citations") === null){
-    setData("Citations",[]);
-    citations = getData("Citations");
+    citations = [];
+    setData("Citations",citations);
 } else {
     citations = getData("Citations");
 }
