@@ -33,15 +33,31 @@ function addCitation(url) {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
         let url = tabs[0].url;
         chrome.storage.local.get(["Bibliography"], (result) => {
-            let bib = result.Bibliography;
-            bib.push(url);
+            if(result.Bibliography === undefined){
+                bib = ["References"]
+            } else {
+                bib = result.Bibliography;
+            }
+            if(!bib.includes(url)){
+                bib.push(url);
+            }
             chrome.storage.local.set({"Bibliography": bib}, () => {});
-            document.getElementById('url_disp').value = bib;
+            let bibliography = "";
+            bib.forEach(function (value) {
+                bibliography += value;
+                bibliography += " \n"
+            });
+            document.getElementById('url_disp').value = bibliography;
         });
     });
 }
 
 function copyBib() {
+    let bibliography = "";
+    bib.forEach(function (value) {
+        bibliography += value;
+        bibliography += " \n"
+    });
     navigator.clipboard.writeText(bibliography).then();
 }
 
@@ -49,5 +65,6 @@ function clearBib() {
     chrome.storage.local.set({"Bibliography": []}, () => {
         console.log("Bibliography cleared");
         document.getElementById('url_disp').value = "";
+        bib = ["References"];
     });
 }
