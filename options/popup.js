@@ -3,6 +3,9 @@ function onError(e) {
     console.error(e);
 }
 
+getData();
+setData();
+
 // Declaring UI elements
 let add_cit = document.getElementById('add_cit');
 let copy_bib = document.getElementById('copy_bib');
