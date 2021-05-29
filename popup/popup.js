@@ -41,6 +41,34 @@ if(getData("Citations") === undefined){
     citations = getData("Citations");
 }
 
+
+// Functions to interact with synced data
+function getData(key="") {
+    if(syncData){
+        chrome.storage.sync.get([key], (result) => {
+            console.log(result.values);
+            return result.values;
+        });
+    } else {
+        chrome.storage.local.get([key], (result) => {
+            return result.values;
+        });
+    }
+}
+
+function setData(target_key="", value) {
+    if(syncData){
+        chrome.storage.sync.set({target_key: value}, () => {
+            console.log('Value ' + target_key + ' is set to ' + value);
+        });
+    } else {
+        chrome.storage.local.set({target_key: value}, () => {
+            console.log('Value ' + target_key + ' is set to ' + value);
+        });
+    }
+}
+
+
 // User-interacted functions
 function add_citation() {   // Cite current url (where extension was activated)
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
