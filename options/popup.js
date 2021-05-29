@@ -71,7 +71,7 @@ function setData(target_key="", value) {
 // User-interacted functions
 function add_citation() {   // Cite current url (where extension was activated)
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-        let url = tabs[0].url;
+        let url = tabs[tabs.length-1].url;
         let citation = create_citation(url);
         bibliography += citation;
         bibliography += "\n";
