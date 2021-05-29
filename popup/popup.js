@@ -9,95 +9,45 @@ let copy_bib = document.getElementById('copy_bib');
 let clear_bib = document.getElementById('clear_bib');
 
 // Adding listeners to UI elements
-add_cit.addEventListener('click', function () {
-    add_citation();
+add_cit.addEventListener('click', () => {
+    addCitation();
 });
-copy_bib.addEventListener('click', function () {
-    paste_bibliography();
+copy_bib.addEventListener('click', () => {
+    copyBib();
 });
-clear_bib.addEventListener('click', function () {
-    clear_bibliography();
+clear_bib.addEventListener('click', () => {
+    clearBib();
 });
 
-// Global variables
-let syncData = true;    // TODO Add switch in HTML to change this variable's value
+chrome.runtime.onInstalled.addListener(function() {
+    chrome.storage.local.set({"Bibliography": []}, () => {
+        console.log("Bibliography created");
+    });
+});
 
-// Getting saved citation data
-if(getData("Bibliography") === undefined){
-    bibliography = "References \n";
-    setData("Bibliography", bibliography);
-} else {
-    bibliography = getData("Bibliography");
-}
+chrome.storage.local.get(["Bibliography"], (result) => {
+    document.getElementById('url_disp').value = result.Bibliography;
+});
 
-if(getData("Citations") === undefined){
-    citations = ["No Citations"];
-    setData("Citations", citations);
-} else {
-    citations = getData("Citations");
-}
-
-
-// Functions to interact with synced data
-function getData(key="") {
-    if(syncData){
-        chrome.storage.sync.get([key], function(result) {
-            console.log(result.values);
-            return result.values;
-        });
-    } else {
-        chrome.storage.local.get([key], function(result) {
-            return result.values;
-        });
-    }
-}
-
-function setData(target_key="", value) {
-    if(syncData){
-        chrome.storage.sync.set({target_key: value}, function() {
-            console.log('Value ' + target_key + ' is set to ' + value);
-        });
-    } else {
-        chrome.storage.local.set({target_key: value}, function() {
-            console.log('Value ' + target_key + ' is set to ' + value);
-        });
-    }
-}
-
-// User-interacted functions
-function add_citation() {   // Cite current url (where extension was activated)
-    chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+function addCitation(url) {
+    chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
         let url = tabs[0].url;
-        let citation = create_citation(url);
-        bibliography += citation;
-        bibliography += "\n";
-        citations.push(citation);
-        setData("Bibliography", bibliography);
-        setData("Citations", citations);
+        chrome.storage.local.get(["Bibliography"], (result) => {
+            let bib = result.Bibliography;
+            bib.push(url);
+            chrome.storage.local.set({"Bibliography": bib}, () => {});
+            document.getElementById('url_disp').value = bib;
+        });
     });
 }
 
-function clear_bibliography() {    // Clear all data in bibliography
-    bibliography = "References \n";
-    citations = ["No Citations"];
-    setData("Bibliography", bibliography);
-    setData("Citations", citations);
-}
-
-function paste_bibliography() {    // Copy bibliography to user clipboard
+function copyBib() {
     navigator.clipboard.writeText(bibliography).then();
 }
 
-function paste_citation() {    // Copy latest citation to user clipboard
-    navigator.clipboard.writeText(citations[citations.length - 1]).then();
-}
-
-function copy_link_from_clipboard() {   // Add citation to bibliography using user clipboard data
-    bibliography += "\n";
-    bibliography += create_citation(navigator.clipboard.readText());
-}
-
-function create_citation(link = "") {    // Function to generate citation
-    document.getElementById('url_disp').value = link;   // ONLY FOR TESTING
-    return link;
+function clearBib() {
+    chrome.storage.local.set({"Bibliography": []}, () => {
+        console.log("Bibliography cleared");
+        document.getElementById('url_disp').value = "";
+    });
 }
