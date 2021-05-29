@@ -90,3 +90,9 @@ input:checked + .slider:before {
     -ms-transform: translateX(33px);
     transform: translateX(33px);
 }
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
