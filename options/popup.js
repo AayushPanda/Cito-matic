@@ -24,23 +24,21 @@ clear_bib.addEventListener('click', function () {
 });
 
 // Global variables
-let syncData = true;    // TODO Add switch in HTML to change this variable's value
-let bibliography;
-let citations;
+var syncData = true;    // TODO Add switch in HTML to change this variable's value
 
 // Getting saved citation data
 if(getData("Bibliography") === null){
-    bibliography = "References";
+    var bibliography = "References";
     setData("Bibliography", bibliography);
 } else {
-    bibliography = getData("Bibliography");
+    var bibliography = getData("Bibliography");
 }
 
 if(getData("Citations") === null){
-    citations = [];
+    var citations = [];
     setData("Citations",citations);
 } else {
-    citations = getData("Citations");
+    var citations = getData("Citations");
 }
 
 // Functions to interact with synced data
