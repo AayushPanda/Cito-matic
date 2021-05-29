@@ -6,7 +6,6 @@ function onError(e) {
 // Declaring UI elements
 let add_cit = document.getElementById('add_cit');
 let copy_bib = document.getElementById('copy_bib');
-let copy_cit = document.getElementById('copy_cit');
 let clear_bib = document.getElementById('clear_bib');
 
 // Adding listeners to UI elements
@@ -15,9 +14,6 @@ add_cit.addEventListener('click', function () {
 });
 copy_bib.addEventListener('click', function () {
     paste_bibliography();
-});
-copy_cit.addEventListener('click', function () {
-    paste_citation();
 });
 clear_bib.addEventListener('click', function () {
     clear_bibliography();
