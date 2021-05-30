@@ -13,15 +13,16 @@ chrome.tabs.onUpdated.addListener(() => {
     });
 });
 
-function addCitation(url) {
+function addCitation() {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
         let url = tabs[0].url;
         chrome.storage.local.get(["Bibliography"], (result) => {
             let bib;
             bib = result.Bibliography;
+            let today = new Date();
             let cit = {
                 url: url,
-                dateAccessed: []
+                dateAccessed: [today.getFullYear(), today.getMonth()+1, today.getDate()]
             }
             let exists = false;
             bib.forEach((value) => {
@@ -43,6 +44,7 @@ function formatBib(b) {
     let bib = "";
     if(b) {
         b.forEach((value) => {
+            console.log(value);
             bib += value.url + ".\n";
         }); 
     }

@@ -33,9 +33,10 @@ function addCitation(url) {
         chrome.storage.local.get(["Bibliography"], (result) => {
             let bib;
             bib = result.Bibliography;
+            let today = new Date();
             let cit = {
                 url: url,
-                dateAccessed: []
+                dateAccessed: [today.getFullYear(), today.getMonth()+1, today.getDate()]
             }
             let exists = false;
             bib.forEach((value) => {
@@ -45,6 +46,7 @@ function addCitation(url) {
             });
             if(!exists) {
                 bib.push(cit);
+                console.log(cit);
             }
             chrome.storage.local.set({"Bibliography": bib}, () => {});
             document.getElementById('url_disp').value = formatBib(bib);
