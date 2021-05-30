@@ -89,7 +89,11 @@ function formatBib(b) {
     if(b) {
         b.forEach((cit) => {
             let name = cit.author.split(' ');
-            bib += name[1] + ', ' + name[0] + '. ';
+            if(name.length > 1) {
+                bib += name[name.length-1] + ', ' + name[0] + '. ';
+            } else {
+                bib += name[0];
+            }
             bib += '"' + cit.title + '." ';
             bib += cit.publisher + ', ';
             bib += cit.datePublished + ', ';
