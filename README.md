@@ -1,2 +1,2 @@
 # Cito-matic
-An extension for Chromium browsers to help citing sources easier. Submission for HACKON 2.0
+Citomatic is an extension for Chrome browsers to make creating bibliographies super easy. Submission for HACKON 2.0
