@@ -21,6 +21,7 @@ textarea {
     height: 236px;
     border: #4C5454 solid 5px;
     border-radius: 10px;
+    font-family: 'Numans', sans-serif;
 }
 
 .text {
@@ -35,6 +36,7 @@ textarea {
 
 select {
     height: 33px;
+    font-family: 'Numans', sans-serif;
 }
 
 .btn {

@@ -33,8 +33,18 @@ function addCitation(url) {
         chrome.storage.local.get(["Bibliography"], (result) => {
             let bib;
             bib = result.Bibliography;
-            if(!bib.includes(url)){
-                bib.push(url);
+            let cit = {
+                url: url,
+                dateAccessed: []
+            }
+            let exists = false;
+            bib.forEach((value) => {
+                if(value.url == cit.url) {
+                    exists = true;
+                }
+            });
+            if(!exists) {
+                bib.push(cit);
             }
             chrome.storage.local.set({"Bibliography": bib}, () => {});
             document.getElementById('url_disp').value = formatBib(bib);
@@ -57,6 +67,10 @@ function clearBib() {
 
 function formatBib(b) {
     let bib = "";
-    if(b) { b.forEach((value) => {bib += value + ".\n";}); }
+    if(b) {
+        b.forEach((value) => {
+            bib += value.url + ".\n";
+        }); 
+    }
     return bib;
 }
