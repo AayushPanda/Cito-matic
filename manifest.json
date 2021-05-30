@@ -10,14 +10,8 @@
     "persistent": false
   },
 
-  "icons": {
-    "16": "graphics/icon16.png",
-    "48": "graphics/icon48.png",
-    "128": "graphics/icon128.png"
-  },
-
   "browser_action": {
-    "default_icon": "graphics/icon128.png",
+    "default_icon": "graphics/icon.png",
     "default_popup": "popup/popup.html"
   },
 

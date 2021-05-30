@@ -80,10 +80,6 @@ function clearBib() {
 
 function formatBib(b) {
     let bib = "";
-    if(b) {
-        b.forEach((value) => {
-            bib += value + ".\n";
-        });
-    }
+    if(b) { b.forEach((value) => {bib += value + ".\n";}); }
     return bib;
 }
