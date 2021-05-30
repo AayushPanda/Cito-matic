@@ -28,6 +28,10 @@ chrome.storage.local.get(["Bibliography"], (result) => {
 });
 
 function addCitation(url) {
+    chrome.tabs.executeScript({
+        file: 'contentScript.js'
+    });
+    /*
     chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
         let url = tabs[0].url;
         chrome.storage.local.get(["Bibliography"], (result) => {
@@ -52,6 +56,7 @@ function addCitation(url) {
             document.getElementById('url_disp').value = formatBib(bib);
         });
     });
+     */
 }
 
 function copyBib() {
