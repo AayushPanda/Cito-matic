@@ -15,6 +15,12 @@
     "default_popup": "popup/popup.html"
   },
 
+  "icons": {
+    "128": "graphics/icon.png",
+    "48": "graphics/icon48.png",
+    "16": "graphics/icon16.png"
+  },
+
   "homepage_url": "https://github.com/AayushPanda/citomatic",
 
   "content_scripts": [
