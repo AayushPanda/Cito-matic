@@ -3,41 +3,28 @@ function onError(e) {
     console.error(e);
 }
 
-// Declaring UI elements
-let add_cit = document.getElementById('add_cit');
-let copy_bib = document.getElementById('copy_bib');
-let clear_bib = document.getElementById('clear_bib');
-// bibliography = "References \n";
-
 // Adding listeners to UI elements
-add_cit.addEventListener('click', () => {
+document.getElementById('add_cit').addEventListener('click', () => {
     addCitation();
 });
-copy_bib.addEventListener('click', () => {
+document.getElementById('copy_bib').addEventListener('click', () => {
     copyBib();
 });
-clear_bib.addEventListener('click', () => {
+document.getElementById('clear_bib').addEventListener('click', () => {
     clearBib();
 });
-
-chrome.runtime.onInstalled.addListener(function() {
-    chrome.storage.local.set({"Bibliography": ["A"]}, () => {
-        console.log("Bibliography created");
+document.getElementById('switch').addEventListener('click', () => {
+    chrome.storage.local.get(["Activated"], (result) => {
+        chrome.storage.local.set({"Activated": !result.Activated}, () => {});
     });
+});
+
+chrome.storage.local.get(["Activated"], (result) => {
+    document.getElementById('switch').checked = result.Activated;
 });
 
 chrome.storage.local.get(["Bibliography"], (result) => {
     document.getElementById('url_disp').value = formatBib(result.Bibliography);
-/*    
-    bib = result.Bibliography;
-
-    bib.forEach(function (value) {
-        bibliography += value;
-        bibliography += " \n";
-    });
-
-    document.getElementById('url_disp').value = bibliography;
-*/
 });
 
 function addCitation(url) {
@@ -45,12 +32,7 @@ function addCitation(url) {
         let url = tabs[0].url;
         chrome.storage.local.get(["Bibliography"], (result) => {
             let bib;
-            if(result.Bibliography === undefined){
-                bib = [];
-                /* bib = ["References"]; */
-            } else {
-                bib = result.Bibliography;
-            }
+            bib = result.Bibliography;
             if(!bib.includes(url)){
                 bib.push(url);
             }
@@ -70,11 +52,6 @@ function clearBib() {
     chrome.storage.local.set({"Bibliography": []}, () => {
         console.log("Bibliography cleared");
         document.getElementById('url_disp').value = "";
-/*
-        bib = ["References"];
-        bibliography = "References \n";
-        document.getElementById('url_disp').value = bibliography;
-*/
     });
 }
 
