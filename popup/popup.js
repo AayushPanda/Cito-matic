@@ -49,7 +49,7 @@ function addCitation() {
                             exists = true;
                         }
                     });
-                    if(!exists) {
+                    if(!exists && !cit.url.includes("google.com")) {
                         bib.push(cit);
                     }
 
@@ -88,15 +88,17 @@ function formatBib(b) {
     let bib = "";
     if(b) {
         b.forEach((cit) => {
-            let name = cit.author.split(' ');
-            if(name.length > 1) {
-                bib += name[1] + ', ' + name[0] + '. ';
-            } else {
-                bib += name[0];
+            if(cit.author) {
+                let name = cit.author.split(' ');
+                if(name.length > 1) {
+                    bib += name[1] + ', ' + name[0] + '. ';
+                } else {
+                    bib += name[0];
+                }
             }
             bib += '"' + cit.title + '." ';
-            bib += cit.publisher + ', ';
-            bib += cit.datePublished + ', ';
+            if(cit.publisher) { bib += cit.publisher + ', '; }
+            if(cit.datePublished) { bib += cit.datePublished + ', '; }
             bib += cit.url + '. ';
             bib += 'Accessed ' + cit.dateAccessed + '.\n';
         }); 
