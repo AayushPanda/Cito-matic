@@ -19,6 +19,8 @@ textarea {
     resize: none;
     width: 316px;
     height: 236px;
+    border: #4C5454 solid 5px;
+    border-radius: 10px;
 }
 
 .text {

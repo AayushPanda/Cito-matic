@@ -18,11 +18,7 @@ function addCitation() {
         let url = tabs[0].url;
         chrome.storage.local.get(["Bibliography"], (result) => {
             let bib;
-            if(result.Bibliography === undefined){
-                bib = [];
-            } else {
-                bib = result.Bibliography;
-            }
+            bib = result.Bibliography;
             if(!bib.includes(url)){
                 bib.push(url);
             }
