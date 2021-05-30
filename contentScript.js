@@ -23,13 +23,22 @@ if(document.querySelector("meta[name='author']") !== null){
     author = document.querySelector("meta[property='author']").getAttribute("content");
 }
 
-var publishingTime = document.querySelector("meta[property='article:published_time']").getAttribute("content");
+var publishingTime = document.querySelector("meta[property='article:published_time']").getAttribute("content").toString();
 
-var modifiedTime = document.querySelector("meta[property='article:modified_time']").getAttribute("content");
+var modifiedTime = document.querySelector("meta[property='article:modified_time']").getAttribute("content").toString();
 
 parser = new DOMParser();
 xmlDoc = parser.parseFromString(rawHTML,"text/xml");
-console.log(publisher);
+
+function makeDate(datestring){
+    let dateString = new Date(publishingTime.slice(0,4), publishingTime.slice(5,7), publishingTime.slice(8,10)).toDateString().slice(4,15);
+    return dateString.slice(4,7) + dateString.slice(0,4) + dateString.slice(7,13) + ".";
+}
+
+publishingTime = makeDate(publishingTime);
+modifiedTime = makeDate(modifiedTime);
+
+console.log(publishingTime);
 
 cit = {
     title: source_title,
