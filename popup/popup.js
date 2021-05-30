@@ -7,7 +7,7 @@ function onError(e) {
 let add_cit = document.getElementById('add_cit');
 let copy_bib = document.getElementById('copy_bib');
 let clear_bib = document.getElementById('clear_bib');
-let recordAllSwitch = document.getElementById("recordAllSwitch");
+// bibliography = "References \n";
 
 // Adding listeners to UI elements
 add_cit.addEventListener('click', () => {
@@ -19,27 +19,25 @@ copy_bib.addEventListener('click', () => {
 clear_bib.addEventListener('click', () => {
     clearBib();
 });
-recordAllSwitch.addEventListener("click", () => {
-    chrome.storage.local.set({"recordAll": recordAllSwitch.checked}, () => {
-        console.log("Record all tabs settings changed");
-    });
-});
 
 chrome.runtime.onInstalled.addListener(function() {
     chrome.storage.local.set({"Bibliography": ["A"]}, () => {
         console.log("Bibliography created");
     });
-    chrome.storage.local.set({"recordAll": false}, () => {
-        console.log("Record all tabs settings set");
-    });
 });
 
 chrome.storage.local.get(["Bibliography"], (result) => {
     document.getElementById('url_disp').value = formatBib(result.Bibliography);
-});
+/*    
+    bib = result.Bibliography;
 
-chrome.storage.local.get(["recordAll"], (result) => {
-    recordAllSwitch.checked = result.recordAll;
+    bib.forEach(function (value) {
+        bibliography += value;
+        bibliography += " \n";
+    });
+
+    document.getElementById('url_disp').value = bibliography;
+*/
 });
 
 function addCitation(url) {
@@ -49,6 +47,7 @@ function addCitation(url) {
             let bib;
             if(result.Bibliography === undefined){
                 bib = [];
+                /* bib = ["References"]; */
             } else {
                 bib = result.Bibliography;
             }
@@ -71,6 +70,11 @@ function clearBib() {
     chrome.storage.local.set({"Bibliography": []}, () => {
         console.log("Bibliography cleared");
         document.getElementById('url_disp').value = "";
+/*
+        bib = ["References"];
+        bibliography = "References \n";
+        document.getElementById('url_disp').value = bibliography;
+*/
     });
 }
 
