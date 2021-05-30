@@ -17,10 +17,18 @@
 
   "homepage_url": "https://github.com/AayushPanda/citomatic",
 
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"]
+    }
+  ],
+
   "permissions": [
     "clipboardWrite",
     "clipboardRead",
     "tabs",
-    "storage"
+    "storage",
+    "activeTab"
   ]
 }

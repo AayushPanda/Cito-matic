@@ -36,11 +36,11 @@ function addCitation(url) {
             let today = new Date();
             let cit = {
                 url: url,
-                dateAccessed: [today.getFullYear(), today.getMonth()+1, today.getDate()]
-            }
+                dateAccessed: [today.getFullYear(), today.getMonth()+1, today.getDate()],
+            };
             let exists = false;
             bib.forEach((value) => {
-                if(value.url == cit.url) {
+                if(value.url === cit.url) {
                     exists = true;
                 }
             });
