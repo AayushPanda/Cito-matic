@@ -29,6 +29,7 @@
     "clipboardRead",
     "tabs",
     "storage",
-    "activeTab"
+    "activeTab",
+    "*://*/*"
   ]
 }
