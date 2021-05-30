@@ -40,7 +40,7 @@ function addCitation() {
                     cit = request;
                     sendResponse({});
                     let today = new Date();
-                    cit.dateAccessed = [today.getFullYear(), today.getMonth()+1, today.getDate()];
+                    cit.dateAccessed = makeDateNums([today.getFullYear(), today.getMonth()+1, today.getDate()]);
                     cit.url = url;
 
                     let exists = false;
@@ -62,6 +62,13 @@ function addCitation() {
             });
         });
     });
+}
+
+function makeDateNums(arr) {
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    let dateString = "";
+    dateString += arr[2] + " " + months[arr[1]] + " " + arr[0];
+    return arr[2] + " " + months[arr[1]] + " " + arr[0];
 }
 
 function copyBib() {
