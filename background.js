@@ -31,7 +31,7 @@ function addCitation() {
 
                     let exists = false;
                     bib.forEach((value) => {
-                        if(value.url === cit.url) {
+                        if(value.title === cit.title) {
                             exists = true;
                         }
                     });
@@ -50,14 +50,17 @@ function addCitation() {
     });
 }
 
-
-
 function formatBib(b) {
     let bib = "";
     if(b) {
-        b.forEach((value) => {
-            console.log(value);
-            bib += value.url + ".\n";
+        b.forEach((cit) => {
+            let name = cit.author.split(' ');
+            bib += name[1] + ', ' + name[0] + '. ';
+            bib += '"' + cit.title + '." ';
+            bib += cit.publisher + ', ';
+            bib += cit.datePublished + ', ';
+            bib += cit.url + '. ';
+            bib += 'Accessed ' + cit.dateAccessed + '.\n';
         }); 
     }
     return bib;
