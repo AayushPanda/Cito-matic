@@ -29,20 +29,22 @@ textarea {
     margin-top: 10px;
 }
 
-.btn {
-    width: 33px;
-    height: 33px;
-    padding: 0px;
-}
-
 select {
     height: 33px;
     font-family: 'Numans', sans-serif;
 }
 
 .btn {
+    width: 33px;
+    height: 33px;
+    padding: 0px;
     background-color: #4C5454;
     color: #F2F5EA;
+}
+
+.btn:hover {
+    color: #F2F5EA;
+    background-color: #D64045
 }
 
 .switch {
@@ -68,6 +70,7 @@ select {
     background-color: #4C5454;
     -webkit-transition: .1s;
     transition: .1s;
+    border-radius: 6px;
 }
 
 .slider:before {
@@ -80,6 +83,7 @@ select {
     background-color: #C4C4C4;
     -webkit-transition: .1s;
     transition: .1s;
+    border-radius: 5px;
 }
 
 input:checked + .slider {
