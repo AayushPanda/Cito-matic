@@ -1,2 +1,7 @@
-var rawHTML = (document.documentElement.outerHTML);
-chrome.storage.local.set({"rawHTML": rawHTML}, () => {});
+let rawHTML = (document.documentElement.outerHTML);
+
+let title;
+let publisher;
+let author;
+let publishingTime;
+
