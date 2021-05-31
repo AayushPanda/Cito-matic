@@ -32,10 +32,8 @@
 
   "permissions": [
     "clipboardWrite",
-    "clipboardRead",
     "tabs",
     "storage",
-    "activeTab",
-    "*://*/*"
+    "activeTab"
   ]
 }
