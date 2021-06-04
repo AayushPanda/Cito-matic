@@ -49,7 +49,7 @@ function addCitation() {
                             exists = true;
                         }
                     });
-                    if(!exists && !cit.url.includes("google.com")) {
+                    if(!exists) {
                         bib.push(cit);
                     }
 

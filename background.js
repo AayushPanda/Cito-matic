@@ -26,12 +26,12 @@ function addCitation() {
                     cit = request;
                     sendResponse({});
                     let today = new Date();
-                    cit.dateAccessed = [today.getFullYear(), today.getMonth()+1, today.getDate()];
+                    cit.dateAccessed = makeDateNums([today.getFullYear(), today.getMonth()+1, today.getDate()]);
                     cit.url = url;
 
                     let exists = false;
                     bib.forEach((value) => {
-                        if(value.title === cit.title) {
+                        if(value.url === cit.url) {
                             exists = true;
                         }
                     });
@@ -49,16 +49,28 @@ function addCitation() {
         });
     });
 }
+function makeDateNums(arr) {
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    let dateString = "";
+    dateString += arr[2] + " " + months[arr[1]] + " " + arr[0];
+    return arr[2] + " " + months[arr[1]] + " " + arr[0];
+}
 
 function formatBib(b) {
     let bib = "";
     if(b) {
         b.forEach((cit) => {
-            let name = cit.author.split(' ');
-            bib += name[1] + ', ' + name[0] + '. ';
+            if(cit.author) {
+                let name = cit.author.split(' ');
+                if(name.length > 1) {
+                    bib += name[1] + ', ' + name[0] + '. ';
+                } else {
+                    bib += name[0];
+                }
+            }
             bib += '"' + cit.title + '." ';
-            bib += cit.publisher + ', ';
-            bib += cit.datePublished + ', ';
+            if(cit.publisher) { bib += cit.publisher + ', '; }
+            if(cit.datePublished) { bib += cit.datePublished + ', '; }
             bib += cit.url + '. ';
             bib += 'Accessed ' + cit.dateAccessed + '.\n';
         }); 
