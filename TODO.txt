@@ -1,0 +1,8 @@
+TODO:
+- APA and Chicago style citing
+- Only track articles and videos
+- Improve finding metadata
+
+Future work:
+Cite YouTube videos
+Try to find some other method of finding metadata than simply HTML parsing between head tags
