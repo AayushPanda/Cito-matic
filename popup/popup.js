@@ -13,6 +13,9 @@ document.getElementById('copy_bib').addEventListener('click', () => {
 document.getElementById('clear_bib').addEventListener('click', () => {
     clearBib();
 });
+document.getElementById('style').addEventListener('change', () => {
+    changeStyle(document.getElementById('style').value);
+});
 document.getElementById('switch').addEventListener('click', () => {
     chrome.storage.local.get(["Activated"], (result) => {
         chrome.storage.local.set({"Activated": !result.Activated}, () => {});
@@ -26,6 +29,14 @@ chrome.storage.local.get(["Activated"], (result) => {
 chrome.storage.local.get(["Bibliography"], (result) => {
     document.getElementById('url_disp').value = formatBib(result.Bibliography);
 });
+
+chrome.storage.local.get(["Style"], (result) => {
+    document.getElementById('style').value = result.Style;
+});
+
+function changeStyle(style) {
+    chrome.storage.local.set({"Style": style}, () => {});
+}
 
 function addCitation() {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {

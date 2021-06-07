@@ -2,7 +2,12 @@ chrome.runtime.onInstalled.addListener(function() {
     chrome.storage.local.set({"Bibliography": []}, () => {
         console.log("Bibliography created");
     });
-    chrome.storage.local.set({"Activated": false}, () => {});
+    chrome.storage.local.set({"Activated": false}, () => {
+        console.log("Activated set to false");
+    });
+    chrome.storage.local.set({"Style": "mla"}, () => {
+        console.log("Style set to MLA");
+    });
 });
 
 chrome.tabs.onUpdated.addListener(() => {
