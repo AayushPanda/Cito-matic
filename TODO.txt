@@ -1,5 +1,6 @@
 TODO:
 - APA and Chicago style citing
+- Fix APA subtleties
 - Only track articles and videos
 - Improve finding metadata
 

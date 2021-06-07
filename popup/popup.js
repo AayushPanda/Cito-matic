@@ -41,7 +41,7 @@ function changeStyle(style) {
 function addCitation() {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
         let url = tabs[0].url;
-        chrome.storage.local.get(["Bibliography"], (result) => {
+        chrome.storage.local.get(["Bibliography", "Style"], (result) => {
             let bib;
             bib = result.Bibliography;
             let cit;
@@ -65,7 +65,7 @@ function addCitation() {
                     }
 
                     chrome.storage.local.set({"Bibliography": bib}, () => {});
-                    document.getElementById('url_disp').value = formatBib(bib);
+                    document.getElementById('url_disp').value = formatBib(bib, result.Style);
                 }
             );
             chrome.tabs.executeScript({
@@ -83,8 +83,8 @@ function makeDateNums(arr) {
 }
 
 function copyBib() {
-    chrome.storage.local.get(["Bibliography"], (result) => {
-        navigator.clipboard.writeText(formatBib(result.Bibliography)).then();
+    chrome.storage.local.get(["Bibliography", "Style"], (result) => {
+        navigator.clipboard.writeText(formatBib(result.Bibliography, result.Style)).then();
     });
 }
 
@@ -95,24 +95,49 @@ function clearBib() {
     });
 }
 
-function formatBib(b) {
+function formatBib(b, s) {
     let bib = "";
     if(b) {
-        b.forEach((cit) => {
-            if(cit.author) {
-                let name = cit.author.split(' ');
-                if(name.length > 1) {
-                    bib += name[1] + ', ' + name[0] + '. ';
-                } else {
-                    bib += name[0];
-                }
-            }
-            bib += '"' + cit.title + '." ';
-            if(cit.publisher) { bib += cit.publisher + ', '; }
-            if(cit.datePublished) { bib += cit.datePublished + ', '; }
-            bib += cit.url + '. ';
-            bib += 'Accessed ' + cit.dateAccessed + '.\n';
-        }); 
+        switch(s) {
+            case "mla": 
+                b.forEach((cit) => {
+                    if(cit.author) {
+                        let name = cit.author.split(' ');
+                        if(name.length > 1) {
+                            bib += name[1] + ', ' + name[0] + '. ';
+                        } else {
+                            bib += name[0];
+                        }
+                    }
+                    bib += '"' + cit.title + '." ';
+                    if(cit.publisher) { bib += cit.publisher + ', '; }
+                    if(cit.datePublished) { bib += cit.datePublished + ', '; }
+                    bib += cit.url + '. ';
+                    bib += 'Accessed ' + cit.dateAccessed + '.\n';
+                });
+                break;
+            case "apa":
+                b.forEach((cit) => {
+                    if(cit.author) {
+                        let name = cit.author.split(' ');
+                        if(name.length > 1) {
+                            bib += name[1] + ', ' + name[0].charAt(0) + '. ';
+                        } else {
+                            bib += name[0];
+                        }
+                    } else {
+                        if(cit.publisher) { bib += cit.publisher + '. '; }
+                    }
+                    // TODO: Fix date format
+                    if(cit.datePublished) { bib += "(" + cit.dateAccessed + "). "; }
+                    else { bib += "(n.d.). "}
+                    bib += cit.title + ". ";
+                    if(cit.publisher && cit.author) { bib += cit.publisher + '. '; }
+                    bib += cit.url + "\n";
+                });
+                break;
+        }
+        
     }
     return bib;
 }
