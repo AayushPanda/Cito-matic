@@ -26,12 +26,9 @@ chrome.storage.local.get(["Activated"], (result) => {
     document.getElementById('switch').checked = result.Activated;
 });
 
-chrome.storage.local.get(["Bibliography"], (result) => {
-    document.getElementById('url_disp').value = formatBib(result.Bibliography);
-});
-
-chrome.storage.local.get(["Style"], (result) => {
+chrome.storage.local.get(["Bibliography", "Style"], (result) => {
     document.getElementById('style').value = result.Style;
+    document.getElementById('url_disp').value = formatBib(result.Bibliography, result.Style);
 });
 
 function changeStyle(style) {
