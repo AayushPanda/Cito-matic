@@ -32,7 +32,12 @@ chrome.storage.local.get(["Bibliography", "Style"], (result) => {
 });
 
 function changeStyle(style) {
-    chrome.storage.local.set({"Style": style}, () => {});
+    chrome.storage.local.set({"Style": style}, () => {
+        chrome.storage.local.get(["Bibliography"], (result) => {
+            document.getElementById('style').value = style;
+            document.getElementById('url_disp').value = formatBib(result.Bibliography, style);
+        });
+    });
 }
 
 function addCitation() {
@@ -125,7 +130,6 @@ function formatBib(b, s) {
                     } else {
                         if(cit.publisher) { bib += cit.publisher + '. '; }
                     }
-                    // TODO: Fix date format
                     if(cit.datePublished) { bib += "(" + cit.dateAccessed + "). "; }
                     else { bib += "(n.d.). "}
                     bib += cit.title + ". ";
@@ -133,6 +137,22 @@ function formatBib(b, s) {
                     bib += cit.url + "\n";
                 });
                 break;
+            case "chicago": 
+            b.forEach((cit) => {
+                if(cit.author) {
+                    let name = cit.author.split(' ');
+                    if(name.length > 1) {
+                        bib += name[1] + ', ' + name[0] + '. ';
+                    } else {
+                        bib += name[0];
+                    }
+                }
+                bib += '"' + cit.title + '." ';
+                if(cit.publisher) { bib += cit.publisher + '. '; }
+                if(cit.datePublished) { bib += cit.datePublished + '. '; }
+                else {bib += 'Accessed ' + cit.dateAccessed + '. ';}
+                bib += cit.url + "\n";
+            });
         }
         
     }

@@ -1,9 +1,12 @@
 TODO:
-- APA and Chicago style citing
+- Chicago style citing
 - Fix APA subtleties
+    - Fix date formatting
 - Only track articles and videos
 - Improve finding metadata
+    - Able to cite pages with multiple authors
 
 Future work:
-Cite YouTube videos
-Try to find some other method of finding metadata than simply HTML parsing between head tags
+- Cite YouTube videos
+- Include method to edit citation objects
+- Find some other method of finding metadata than simply HTML parsing between head tags
