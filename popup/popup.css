@@ -32,6 +32,7 @@ textarea {
 select {
     height: 33px;
     font-family: 'Numans', sans-serif;
+    border-radius: 6px;
 }
 
 .btn {
@@ -76,14 +77,14 @@ select {
 .slider:before {
     position: absolute;
     content: "";
-    height: 33px;
-    width: 33px;
-    left: 0px;
-    bottom: 0px;
-    background-color: #C4C4C4;
+    height: 27px;
+    width: 27px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #F2F5EA;
     -webkit-transition: .1s;
     transition: .1s;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 input:checked + .slider {
@@ -104,4 +105,8 @@ input:checked + .slider:before {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.btn-group .btn:first-child, .btn:last-child {
+    border-radius: 6px;
 }
