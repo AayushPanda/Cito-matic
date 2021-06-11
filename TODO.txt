@@ -1,6 +1,5 @@
 TODO:
-- UI spacing
-- Chicago style citing
+- On installation memory bug
 - Fix APA subtleties
     - Fix date formatting
 - Only track articles and videos

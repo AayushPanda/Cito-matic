@@ -21,8 +21,9 @@ textarea {
     height: 236px;
     border: #4C5454 solid 5px;
     border-radius: 10px;
-    font-family: 'Numans', sans-serif;
+    font-family: 'Source Serif Pro', serif;
     font-size: 10px;
+    line-height: 1.5;
 }
 
 .text {
@@ -31,7 +32,7 @@ textarea {
 
 select {
     height: 33px;
-    font-family: 'Numans', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
     border-radius: 6px;
 }
 
